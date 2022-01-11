@@ -4,7 +4,7 @@ const numButtons = document.querySelectorAll('.num')
 const opButtons = document.querySelectorAll('.op')
 
 // VARIABLES & ARRAYS
-let displayValue = display.innerHTML
+let displayValue = Number(display.innerHTML)
 let numArr = []
 let opArr = [] 
 
@@ -12,30 +12,48 @@ let opArr = []
 // DISPLAY FUNCTIONS
 
 function updateDisplay(value){
-    if(displayValue == 0){
+
+    if(displayValue === 0){
         display.innerHTML = ''
         displayValue = display.innerHTML
     }
-    if(numArr.length > 0){
-        resetDisplay()
+
+    if(value == '.'){
+        if(!displayValue){
+            display.innerHTML = 0
+            displayValue = display.innerHTML
+        }
     }
+
+    if(numArr.length > 0){
+        resetDisplay(value)
+        if(value == '.' && !displayValue){
+            display.innerHTML += 0
+            displayValue = display.innerHTML
+        }
+    }
+    
     display.innerHTML += value
     displayValue = display.innerHTML
 }
 
-function resetDisplay(){
+function resetDisplay(value){
     if(displayValue == numArr[numArr.length - 1]){
+        if(value == '.'){
+            display.innerHTML += value
+            displayValue = display.innerHTML
+        }
         display.innerHTML = ''
         displayValue = display.innerHTML
     }
+ 
 }
 
 function clear(){
     numArr = []
     opArr = []
-
     display.innerHTML = 0
-    displayValue = display.innerHTML
+    displayValue = Number(display.innerHTML)
 }
 
 // BUTTON FUNCTIONS
@@ -49,20 +67,25 @@ numButtons.forEach((button) => {
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.innerHTML == '='){
-            operate(numArr[numArr.length-1],opArr[opArr.length-1], displayValue)
-            opArr = []
+            if(opArr[opArr.length-1] == '/' && displayValue == 0){
+                display.innerHTML = "Nice try, buddy."
+                opArr = []
+            }else{
+                operate(numArr[numArr.length-1],opArr[opArr.length-1], displayValue)
+                opArr = []
+            }
         }
 
         if(button.innerHTML == 'clear'){
-        clear();
-      } else if (button.innerHTML != '='){
-          numArr.push(displayValue)
-          opArr.push(button.innerHTML)
-      }
+            clear();
+        } else if (button.innerHTML != '='){
+            numArr.push(displayValue)
+            opArr.push(button.innerHTML)
+        }
 
-      if(opArr.length > 1 && button.innerHTML != '='){
+        if(opArr.length > 1 && button.innerHTML != '='){
         operate(numArr[numArr.length-2],opArr[opArr.length-2], displayValue)
-      } else if(opArr.length > 2 && button.innerHTML != '='){
+        } else if(opArr.length > 2 && button.innerHTML != '='){
         operate(numArr[numArr.length-2],opArr[opArr.length-1], displayValue)
       }
 
@@ -72,28 +95,41 @@ opButtons.forEach((button) => {
 // BASIC MATH OPERATIONS 
 
 function add(num1,num2){
-    display.innerHTML = parseFloat(+num1 + +num2).toFixed(4)
+    let result = +num1 + +num2
+    display.innerHTML = checkDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function subtract(num1,num2){
-    display.innerHTML = parseFloat(+num1 - +num2).toFixed(4)
+    let result = +num1 - +num2
+    display.innerHTML = checkDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function multiply(num1,num2){
-    display.innerHTML = parseFloat(+num1 * +num2).toFixed(4)
+    let result = +num1 * +num2
+    display.innerHTML = checkDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function divide(num1,num2){
-    display.innerHTML = parseFloat(+num1 / +num2).toFixed(4)
+    let result = +num1 / +num2
+    display.innerHTML = checkDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
+
+// WHOLE NUMBER CHECKER
+function checkDecimals(value){
+    if (value % 1 != 0){
+        return Number((value).toFixed(4))
+    } else {
+        return value
+    }
+}
 
 // OPERATION FUNCTION
 
