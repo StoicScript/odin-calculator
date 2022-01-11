@@ -2,8 +2,8 @@ body {
     background-color: blanchedalmond;
     display: flex;
     justify-content: center;
-    margin: 100px;
     font-family: Helvetica;
+    margin-top: 5%;
 }
 
 #display{
