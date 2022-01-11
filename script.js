@@ -72,25 +72,25 @@ opButtons.forEach((button) => {
 // BASIC MATH OPERATIONS 
 
 function add(num1,num2){
-    display.innerHTML = +num1 + +num2
+    display.innerHTML = parseFloat(+num1 + +num2).toFixed(4)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function subtract(num1,num2){
-    display.innerHTML = +num1 - +num2
+    display.innerHTML = parseFloat(+num1 - +num2).toFixed(4)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function multiply(num1,num2){
-    display.innerHTML = +num1 * +num2
+    display.innerHTML = parseFloat(+num1 * +num2).toFixed(4)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function divide(num1,num2){
-    display.innerHTML = +num1 / +num2
+    display.innerHTML = parseFloat(+num1 / +num2).toFixed(4)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
