@@ -89,3 +89,14 @@ body {
     box-shadow: none;
     transform: translate(-2px,2px)
 }
+
+.num:hover {
+    background-color: rgb(241, 223, 194);
+    cursor: default;
+}
+
+
+.op:hover {
+    background-color: rgb(231, 225, 213);
+    cursor: default;
+}
