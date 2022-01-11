@@ -61,6 +61,7 @@ body {
     vertical-align: middle;
     padding: 10px 0;
     box-shadow: -2px 2px black;
+    background-color: rgb(255, 255, 255)
 }
 
 .op{
@@ -73,7 +74,7 @@ body {
     vertical-align: middle;
     padding: 10px 0;
     box-shadow: -2px 2px black;
-    background-color: rgb(243, 236, 224)
+    background-color: rgb(230, 230, 230)
 }
 
 .operators, .numbers{
@@ -95,12 +96,12 @@ body {
 }
 
 .num:hover {
-    background-color: rgb(241, 223, 194);
+    background-color: rgb(243, 243, 243);
     cursor: default;
 }
 
 
 .op:hover {
-    background-color: rgb(231, 225, 213);
+    background-color: rgb(214, 214, 214);
     cursor: default;
 }
