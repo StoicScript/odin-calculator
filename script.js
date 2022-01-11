@@ -13,6 +13,14 @@ let opArr = []
 
 function updateDisplay(value){
 
+    if(value == '.' && hasDecimal(displayValue)){
+        if(displayValue == numArr[numArr.length-1]){
+            
+        }else {
+            return
+        }
+    }
+
     if(displayValue === 0){
         display.innerHTML = ''
         displayValue = display.innerHTML
@@ -96,39 +104,46 @@ opButtons.forEach((button) => {
 
 function add(num1,num2){
     let result = +num1 + +num2
-    display.innerHTML = checkDecimals(result)
+    display.innerHTML = containDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function subtract(num1,num2){
     let result = +num1 - +num2
-    display.innerHTML = checkDecimals(result)
+    display.innerHTML = containDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function multiply(num1,num2){
     let result = +num1 * +num2
-    display.innerHTML = checkDecimals(result)
+    display.innerHTML = containDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 function divide(num1,num2){
     let result = +num1 / +num2
-    display.innerHTML = checkDecimals(result)
+    display.innerHTML = containDecimals(result)
     displayValue = display.innerHTML
     numArr.push(displayValue)
 };
 
 // WHOLE NUMBER CHECKER
-function checkDecimals(value){
+function containDecimals(value){
     if (value % 1 != 0){
         return Number((value).toFixed(4))
     } else {
         return value
     }
+}
+
+function hasDecimal(value){
+    if (value.toString().indexOf(".") > -1){
+        return true
+    }
+    return false;
 }
 
 // OPERATION FUNCTION
