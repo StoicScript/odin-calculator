@@ -19,11 +19,15 @@ body {
 }
 
 #equals{
-    width: 55%;
+    width: 94.5%;
 }
 
 #clear{
-    width: 35.5%;
+    width: 62.5%;
+}
+
+#back{
+    width: 29%
 }
 
 .calculator {

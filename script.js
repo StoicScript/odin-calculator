@@ -13,6 +13,11 @@ let opArr = []
 
 function updateDisplay(value){
 
+    if(displayValue.length > 16) {
+        alert('Number tooooo loooooonnnnnggggg')
+        return;
+    }
+
     if(value == '.' && hasDecimal(displayValue)){
         if(displayValue == numArr[numArr.length-1]){
             
@@ -84,14 +89,20 @@ opButtons.forEach((button) => {
             }
         }
 
-        if(button.innerHTML == 'clear'){
+        if(button.id == 'back'){
+            displayValue = displayValue.substring(0, displayValue.length - 1);
+           display.innerHTML = displayValue;
+        }
+
+
+        if(button.id == 'clear'){
             clear();
-        } else if (button.innerHTML != '='){
+        } else if (button.innerHTML != '=' && button.id != 'back'){
             numArr.push(displayValue)
             opArr.push(button.innerHTML)
         }
 
-        if(opArr.length > 1 && button.innerHTML != '='){
+        if(opArr.length > 1 && button.innerHTML != '=' && button.id != 'back'){
         operate(numArr[numArr.length-2],opArr[opArr.length-2], displayValue)
         } else if(opArr.length > 2 && button.innerHTML != '='){
         operate(numArr[numArr.length-2],opArr[opArr.length-1], displayValue)
