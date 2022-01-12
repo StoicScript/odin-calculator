@@ -69,9 +69,15 @@ function clear(){
 // BUTTON FUNCTIONS
 
 numButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('mousedown', () => {
       updateDisplay(button.innerHTML);
+      button.style.transform = "translate(-2px,2px)";
+      button.style.boxShadow = "none"
     });
+    button.addEventListener('mouseup', () => {
+        button.style.transform = "none";
+        button.style.boxShadow = "-2px 2px black"
+      });
   });
 
 opButtons.forEach((button) => {
@@ -116,11 +122,13 @@ document.onkeydown = function(e) {
     numButtons.forEach(button => {
         if(e.key == button.innerHTML){
             button.style.transform = "translate(-2px,2px)";
+            button.style.boxShadow = "none"
         }
         document.onkeyup = function(e) {
             numButtons.forEach(button => {
                 if(e.key == button.innerHTML){
                     button.style.transform = "none";
+                    button.style.boxShadow = "-2px 2px black"
                 }
             })
         }
