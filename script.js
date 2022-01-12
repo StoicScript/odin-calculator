@@ -70,13 +70,13 @@ function clear(){
 
 numButtons.forEach((button) => {
     button.addEventListener('mousedown', () => {
-      updateDisplay(button.innerHTML);
       button.style.transform = "translate(-2px,2px)";
       button.style.boxShadow = "none"
     });
     button.addEventListener('mouseup', () => {
         button.style.transform = "none";
         button.style.boxShadow = "-2px 2px black"
+        updateDisplay(button.innerHTML);
       });
   });
 
@@ -116,23 +116,23 @@ opButtons.forEach((button) => {
 // KEYBOARD SUPPORT
 
 document.onkeydown = function(e) {
-    if(!isNaN(e.key) || e.key == '.'){
-        updateDisplay(e.key)
-    }
     numButtons.forEach(button => {
         if(e.key == button.innerHTML){
             button.style.transform = "translate(-2px,2px)";
             button.style.boxShadow = "none"
         }
-        document.onkeyup = function(e) {
-            numButtons.forEach(button => {
-                if(e.key == button.innerHTML){
-                    button.style.transform = "none";
-                    button.style.boxShadow = "-2px 2px black"
-                }
-            })
+    })
+    document.onkeyup = function(e) {
+    numButtons.forEach(button => {
+        if(e.key == button.innerHTML){
+            button.style.transform = "none";
+            button.style.boxShadow = "-2px 2px black"
         }
     })
+    if(!isNaN(e.key) || e.key == '.'){
+        updateDisplay(e.key)
+    }
+}
 }
 
 
