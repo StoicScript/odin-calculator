@@ -85,11 +85,6 @@ body {
     text-align: center;
 }
 
-.num:active {
-    box-shadow: none;
-    transform: translate(-2px,2px)
-}
-
 .op:active {
     box-shadow: none;
     transform: translate(-2px,2px)
