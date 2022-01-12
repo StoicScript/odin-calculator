@@ -112,8 +112,8 @@ opButtons.forEach((button) => {
 document.onkeydown = function(e) {
     if(!isNaN(e.key)){
         updateDisplay(e.key)
+    }
 }
-
 
 // BASIC MATH OPERATIONS 
 
