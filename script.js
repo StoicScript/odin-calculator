@@ -8,7 +8,6 @@ let displayValue = Number(display.innerHTML)
 let numArr = []
 let opArr = [] 
 
-
 // DISPLAY FUNCTIONS
 
 function updateDisplay(value){
@@ -45,7 +44,6 @@ function updateDisplay(value){
             displayValue = display.innerHTML
         }
     }
-    
     display.innerHTML += value
     displayValue = display.innerHTML
 }
@@ -59,7 +57,6 @@ function resetDisplay(value){
         display.innerHTML = ''
         displayValue = display.innerHTML
     }
- 
 }
 
 function clear(){
@@ -80,9 +77,9 @@ numButtons.forEach((button) => {
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.innerHTML == '='){
-            if(opArr[opArr.length-1] == '/' && displayValue == 0){
-                display.innerHTML = "Nice try, buddy."
-                opArr = []
+            if(opArr[opArr.length-1] == '÷' && displayValue == 0){
+                alert("Nice try, buddy.")
+                clear();
             }else{
                 operate(numArr[numArr.length-1],opArr[opArr.length-1], displayValue)
                 opArr = []
@@ -91,9 +88,8 @@ opButtons.forEach((button) => {
 
         if(button.id == 'back'){
             displayValue = displayValue.substring(0, displayValue.length - 1);
-           display.innerHTML = displayValue;
+            display.innerHTML = displayValue;
         }
-
 
         if(button.id == 'clear'){
             clear();
@@ -103,13 +99,21 @@ opButtons.forEach((button) => {
         }
 
         if(opArr.length > 1 && button.innerHTML != '=' && button.id != 'back'){
-        operate(numArr[numArr.length-2],opArr[opArr.length-2], displayValue)
+            operate(numArr[numArr.length-2],opArr[opArr.length-2], displayValue)
         } else if(opArr.length > 2 && button.innerHTML != '='){
-        operate(numArr[numArr.length-2],opArr[opArr.length-1], displayValue)
+            operate(numArr[numArr.length-2],opArr[opArr.length-1], displayValue)
       }
 
     });
   });
+
+// KEYBOARD SUPPORT
+
+document.onkeydown = function(e) {
+    if(!isNaN(e.key)){
+        updateDisplay(e.key)
+}
+
 
 // BASIC MATH OPERATIONS 
 
