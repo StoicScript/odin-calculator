@@ -113,7 +113,20 @@ document.onkeydown = function(e) {
     if(!isNaN(e.key)){
         updateDisplay(e.key)
     }
+    numButtons.forEach(button => {
+        if(e.key == button.innerHTML){
+            button.style.transform = "translate(-2px,2px)";
+        }
+        document.onkeyup = function(e) {
+            numButtons.forEach(button => {
+                if(e.key == button.innerHTML){
+                    button.style.transform = "none";
+                }
+            })
+        }
+    })
 }
+
 
 // BASIC MATH OPERATIONS 
 
