@@ -116,7 +116,7 @@ opButtons.forEach((button) => {
 // KEYBOARD SUPPORT
 
 document.onkeydown = function(e) {
-    if(!isNaN(e.key)){
+    if(!isNaN(e.key) || e.key == '.'){
         updateDisplay(e.key)
     }
     numButtons.forEach(button => {
