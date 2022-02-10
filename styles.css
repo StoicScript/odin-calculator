@@ -61,7 +61,8 @@ body {
     vertical-align: middle;
     padding: 10px 0;
     box-shadow: -2px 2px black;
-    background-color: rgb(255, 255, 255)
+    background-color: rgb(255, 255, 255);
+    transition-duration: 0.08s;
 }
 
 .op{
@@ -74,7 +75,9 @@ body {
     vertical-align: middle;
     padding: 10px 0;
     box-shadow: -2px 2px black;
-    background-color: rgb(230, 230, 230)
+    background-color: rgb(230, 230, 230);
+    transition-duration: 0.08s;
+
 }
 
 .operators, .numbers{
@@ -87,7 +90,7 @@ body {
 
 .op:active {
     box-shadow: none;
-    transform: translate(-2px,2px)
+    transform: translate(-2px,2px);    
 }
 
 .num:hover {
